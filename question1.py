@@ -9,7 +9,7 @@ from sklearn.metrics import classification_report, accuracy_score
 from tensorflow.keras.applications.resnet50 import ResNet50
 from tensorflow.keras.applications import InceptionV3
 
-from data_loader import loadDataH5, preprocess_vgg
+from data_loader import loadDataH5
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -110,7 +110,7 @@ if __name__ == "__main__":
     print(tf.__version__)
     print(tf.executing_eagerly())
     if len(physical_devices) > 0:
-        class_names, trainX, trainY, valX, valY = loadDataH5()
+        trainX, trainY, valX, valY = loadDataH5()
         accuracies = {}
 
         vgg16_acc = {}

@@ -116,7 +116,7 @@ if __name__ == "__main__":
     print(tf.__version__)
     print(tf.executing_eagerly())
     if len(physical_devices) > 0:
-        _, trainX, trainY, valX, valY = loadDataH5()
+        trainX, trainY, valX, valY = loadDataH5()
         vgg16_phase_A(25, trainX, trainY, valX, valY)
         print("=======================================================================================================")
         vgg16_phase_B(25, trainX, trainY, valX, valY)

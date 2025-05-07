@@ -14,18 +14,9 @@ def loadDataH5():
         print (trainX.shape,trainY.shape)
         print (valX.shape,valY.shape)
 
-        labels = np.array(hf['trainY'])
-
-    return labels, trainX, trainY, valX, valY
-
-# Convert to float32 and resize to 224x224
-def preprocess_vgg(images):
-    images = tf.image.resize(images, [64, 64])  # Resize to match VGG16 input
-    images = tf.cast(images, tf.float32)  # Ensure float32 type
-    return preprocess_input(images)  # Normalize for VGG16 (subtract mean RGB, scale)
+    return trainX, trainY, valX, valY
 
 if __name__ == "__main__":
-    trainX, trainY, valX, valY = loadDataH5()
-    test = preprocess_vgg(trainX)
+    loadDataH5()
 
 
