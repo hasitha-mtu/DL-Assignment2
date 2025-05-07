@@ -42,7 +42,7 @@ def vgg16_phase_A(trainX, trainY, valX, valY):
                              batch_size=32,
                              validation_data=(valX, valY))
 
-    plot_accuracy(vgg16_phase_A_model_result, True)
+    plot_accuracy(vgg16_phase_A_model_result, "vgg16_phase_A_model_result",True)
 
 def vgg16_phase_B_1(trainX, trainY, valX, valY):
     base_model = VGG16(weights="imagenet", include_top=False, input_shape=(64, 64, 3))
@@ -105,7 +105,7 @@ def vgg16_phase_B_1(trainX, trainY, valX, valY):
                              batch_size=32,
                              validation_data=(valX, valY))
 
-    plot_accuracy(vgg16_phase_B_1_model_result, True)
+    plot_accuracy(vgg16_phase_B_1_model_result, "vgg16_phase_B_1_model_result", True)
 
 def vgg16_phase_B_2(trainX, trainY, valX, valY):
     base_model = VGG16(weights="imagenet", include_top=False, input_shape=(64, 64, 3))
@@ -186,7 +186,7 @@ def vgg16_phase_B_2(trainX, trainY, valX, valY):
                              batch_size=32,
                              validation_data=(valX, valY))
 
-    plot_accuracy(vgg16_phase_B_2_model_result, True)
+    plot_accuracy(vgg16_phase_B_2_model_result, "vgg16_phase_B_2_model_result", True)
 
 def resnet50_phase_A(trainX, trainY, valX, valY):
     base_model = ResNet50(weights="imagenet", include_top=False,  pooling='avg', input_shape=(64, 64, 3))
@@ -225,7 +225,7 @@ def resnet50_phase_A(trainX, trainY, valX, valY):
                              batch_size=32,
                              validation_data=(valX, valY))
 
-    plot_accuracy(resnet50_phase_A_model_result, True)
+    plot_accuracy(resnet50_phase_A_model_result, "resnet50_phase_A_model_result", True)
 
 def resnet50_phase_B_1(trainX, trainY, valX, valY):
     base_model = ResNet50(weights="imagenet", include_top=False, pooling='avg', input_shape=(64, 64, 3))
@@ -288,7 +288,7 @@ def resnet50_phase_B_1(trainX, trainY, valX, valY):
                              batch_size=32,
                              validation_data=(valX, valY))
 
-    plot_accuracy(resnet50_phase_B_1_model_result, True)
+    plot_accuracy(resnet50_phase_B_1_model_result, "resnet50_phase_B_1_model_result", True)
 
 def resnet50_phase_B_2(trainX, trainY, valX, valY):
     base_model = ResNet50(weights="imagenet", include_top=False, input_shape=(64, 64, 3))
@@ -369,7 +369,7 @@ def resnet50_phase_B_2(trainX, trainY, valX, valY):
                              batch_size=32,
                              validation_data=(valX, valY))
 
-    plot_accuracy(resnet50_phase_B_2_model_result, True)
+    plot_accuracy(resnet50_phase_B_2_model_result, "resnet50_phase_B_2_model_result", True)
 
 if __name__ == "__main__":
     print(tf.config.list_physical_devices('GPU'))
