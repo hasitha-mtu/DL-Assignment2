@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
+import os
 
-def plot_accuracy(model_result):
+def plot_accuracy(model_result, save=False):
   accuracy = model_result.history["accuracy"]
   val_accuracy = model_result.history["val_accuracy"]
   loss = model_result.history["loss"]
@@ -30,4 +31,9 @@ def plot_accuracy(model_result):
   plt.grid(True)
   plt.tight_layout()
   plt.show()
+  if save:
+    file_name = f"output/{model_result}.png"
+    plt.savefig(file_name)
+  else:
+    plt.show()
 
