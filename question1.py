@@ -169,6 +169,7 @@ if __name__ == "__main__":
 
         plt.grid(axis='y', linestyle='--', alpha=0.5)
         plt.tight_layout()
-        plt.show()
+        file_name = f"output/question1_accuracy_comparison.png"
+        plt.savefig(file_name)
 
 

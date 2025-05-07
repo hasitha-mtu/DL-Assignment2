@@ -30,7 +30,6 @@ def plot_accuracy(model_result, save=False):
   plt.title("Training and Validation Accuracy & Loss")
   plt.grid(True)
   plt.tight_layout()
-  plt.show()
   if save:
     file_name = f"output/{model_result}.png"
     plt.savefig(file_name)
