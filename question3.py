@@ -182,7 +182,8 @@ def soft_voting_ensemble(valX, valY):
     print(f'resnet50 prediction values: {resnet50_prediction}')
     print(f'resnet50 prediction type: {type(resnet50_prediction)}')
 
-    ensemble_preds = (vgg16_prediction + resnet50_prediction) / 2
+    ensemble_probs = (vgg16_prediction + resnet50_prediction) / 2
+    ensemble_preds = np.argmax(ensemble_probs, axis=1)
     print(f'final prediction values: {ensemble_preds}')
 
     ensemble_acc = accuracy_score(valY, ensemble_preds)
@@ -198,8 +199,8 @@ if __name__ == "__main__":
     print(tf.executing_eagerly())
     if len(physical_devices) > 0:
         trainX, trainY, valX, valY = loadDataH5()
-        resnet50_acc = resnet50_model(2, trainX, trainY, valX, valY)
-        vgg16_acc = vgg16_model(2, trainX, trainY, valX, valY)
+        resnet50_acc = resnet50_model(1, trainX, trainY, valX, valY)
+        vgg16_acc = vgg16_model(1, trainX, trainY, valX, valY)
         soft_voting_ensemble_acc = soft_voting_ensemble(valX, valY)
 
         print(f"VGG16 Accuracy:     {vgg16_acc:.4f}")
