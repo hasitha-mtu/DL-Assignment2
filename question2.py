@@ -371,21 +371,21 @@ def resnet50_phase_B_2(trainX, trainY, valX, valY):
 
     plot_accuracy(resnet50_phase_B_2_model_result, "resnet50_phase_B_2_model_result", True)
 
-if __name__ == "__main__":
-    print(tf.config.list_physical_devices('GPU'))
-    physical_devices = tf.config.experimental.list_physical_devices('GPU')
-    print(f"physical_devices : {physical_devices}")
-    print(tf.__version__)
-    print(tf.executing_eagerly())
-    if len(physical_devices) > 0:
-        trainX, trainY, valX, valY = loadDataH5()
-        print("=========================================vgg16_phase_A=================================================")
-        vgg16_phase_A(trainX, trainY, valX, valY)
-        print("========================================vgg16_phase_B_1===============================================")
-        vgg16_phase_B_1(trainX, trainY, valX, valY)
-        print("========================================vgg16_phase_B_2================================================")
-        vgg16_phase_B_2(trainX, trainY, valX, valY)
-        print("=======================================================================================================")
+# if __name__ == "__main__":
+#     print(tf.config.list_physical_devices('GPU'))
+#     physical_devices = tf.config.experimental.list_physical_devices('GPU')
+#     print(f"physical_devices : {physical_devices}")
+#     print(tf.__version__)
+#     print(tf.executing_eagerly())
+#     if len(physical_devices) > 0:
+#         trainX, trainY, valX, valY = loadDataH5()
+#         print("=========================================vgg16_phase_A=================================================")
+#         vgg16_phase_A(trainX, trainY, valX, valY)
+#         print("========================================vgg16_phase_B_1===============================================")
+#         vgg16_phase_B_1(trainX, trainY, valX, valY)
+#         print("========================================vgg16_phase_B_2================================================")
+#         vgg16_phase_B_2(trainX, trainY, valX, valY)
+#         print("=======================================================================================================")
 
 if __name__ == "__main__":
     print(tf.config.list_physical_devices('GPU'))
@@ -394,6 +394,7 @@ if __name__ == "__main__":
     print(tf.__version__)
     print(tf.executing_eagerly())
     if len(physical_devices) > 0:
+        trainX, trainY, valX, valY = loadDataH5()
         print("========================================resnet50_phase_A===============================================")
         resnet50_phase_A(trainX, trainY, valX, valY)
         print("=======================================resnet50_phase_B_1==============================================")
