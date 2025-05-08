@@ -98,15 +98,20 @@ def vgg16_model(epochs_count, trainX, trainY, valX, valY):
 def ensemble_prediction(image):
     single_input = np.expand_dims(image, axis=0)
     print(f'single_input shape: {single_input.shape}')
+
     vgg16 = load_model(f"{MODEL_PATH}/vgg16.h5")
     vgg16_prediction = vgg16.predict(single_input)
     print(f'vgg16 prediction values: {vgg16_prediction}')
+    print(f'vgg16 prediction type: {type(vgg16_prediction)}')
+
     resnet50 = load_model(f"{MODEL_PATH}/resnet50.h5")
     resnet50_prediction = resnet50.predict(single_input)
     print(f'resnet50 prediction values: {resnet50_prediction}')
+    print(f'resnet50 prediction type: {type(resnet50_prediction)}')
+
     final_prediction = vgg16_prediction + resnet50_prediction
     print(f'final prediction values: {final_prediction}')
-    pass
+    print(f'Final prediction class: {np.argmax(final_prediction)}')
 
 if __name__ == "__main__":
     print(tf.config.list_physical_devices('GPU'))
@@ -116,10 +121,7 @@ if __name__ == "__main__":
     print(tf.executing_eagerly())
     if len(physical_devices) > 0:
         trainX, trainY, valX, valY = loadDataH5()
-        print(valX.shape)
-        resnet50 = resnet50_model(trainX, trainY, valX, valY)
-        single_input = np.expand_dims(valX[0], axis=0)
-        print(f'single_input shape: {single_input.shape}')
-        output = resnet50.predict(single_input)
-        print("Softmax output:", output)
+        resnet50 = resnet50_model(2, trainX, trainY, valX, valY)
+        vgg16 = vgg16_model(2, trainX, trainY, valX, valY)
+        ensemble_prediction(valX[0])
 
