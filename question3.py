@@ -191,6 +191,35 @@ def soft_voting_ensemble(valX, valY):
 
     return ensemble_acc
 
+def hard_voting_ensemble(valX, valY):
+    vgg16 = load_model(f"{MODEL_PATH}/vgg16.h5")
+    vgg16_prediction = vgg16.predict(valX)
+    print(f'vgg16 prediction values: {vgg16_prediction}')
+    print(f'vgg16 prediction type: {type(vgg16_prediction)}')
+
+    resnet50 = load_model(f"{MODEL_PATH}/resnet50.h5")
+    resnet50_prediction = resnet50.predict(valX)
+    print(f'resnet50 prediction values: {resnet50_prediction}')
+    print(f'resnet50 prediction type: {type(resnet50_prediction)}')
+
+    vgg16_labels = np.argmax(vgg16_prediction, axis=1)
+    resnet50_labels = np.argmax(resnet50_prediction, axis=1)
+
+    ensemble_preds = []
+    for i in range(len(vgg16_labels)):
+        votes = [vgg16_labels[i], resnet50_labels[i]]
+        final_class = np.argmax(np.bincount(votes))
+        ensemble_preds.append(final_class)
+
+    ensemble_preds = np.array(ensemble_preds)
+    print(f'ensemble_preds: {ensemble_preds}')
+    print(f'ensemble_preds shape: {ensemble_preds.shape}')
+
+    ensemble_acc = accuracy_score(valY, ensemble_preds)
+    print(f'ensemble_acc: {ensemble_acc}')
+
+    return ensemble_acc
+
 if __name__ == "__main__":
     print(tf.config.list_physical_devices('GPU'))
     physical_devices = tf.config.experimental.list_physical_devices('GPU')
@@ -206,6 +235,11 @@ if __name__ == "__main__":
         print(f"VGG16 Accuracy:     {vgg16_acc:.4f}")
         print(f"ResNet50 Accuracy:  {resnet50_acc:.4f}")
         print(f"Ensemble(Soft Voting) Accuracy:  {soft_voting_ensemble_acc:.4f}")
+
+        hard_voting_ensemble_acc = hard_voting_ensemble(valX, valY)
+        print(f"Ensemble(Hard Voting) Accuracy:  {hard_voting_ensemble_acc:.4f}")
+
+
 
 
 
