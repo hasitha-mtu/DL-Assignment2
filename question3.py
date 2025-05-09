@@ -199,8 +199,8 @@ if __name__ == "__main__":
     print(tf.executing_eagerly())
     if len(physical_devices) > 0:
         trainX, trainY, valX, valY = loadDataH5()
-        resnet50_acc = resnet50_model(1, trainX, trainY, valX, valY)
-        vgg16_acc = vgg16_model(1, trainX, trainY, valX, valY)
+        resnet50_acc = resnet50_model(25, trainX, trainY, valX, valY)
+        vgg16_acc = vgg16_model(25, trainX, trainY, valX, valY)
         soft_voting_ensemble_acc = soft_voting_ensemble(valX, valY)
 
         print(f"VGG16 Accuracy:     {vgg16_acc:.4f}")
